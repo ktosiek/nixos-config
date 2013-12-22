@@ -1,48 +1,14 @@
-{ config, pkgs, ... }:
-
-{
-  imports = [ ./local-configuration.nix ];
-
-  networking = {
-    networkmanager.enable = true;
-  };
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    layout = "pl";
-    synaptics.enable = true;
-  };
-  # services.xserver.xkbOptions = "eurosign:e";
-
-  services.xserver.displayManager.slim.enable = true;
-  services.xserver.windowManager.i3.enable = true;
-
-  environment = {
-    systemPackages = [ pkgs.vimHugeX ];
-  };
-
-  fonts.enableCoreFonts = true;
-  fonts.extraFonts = [ pkgs.ubuntu_font_family pkgs.dejavu_fonts ];
-
-  users.extraUsers = {
-    tomek = {
-      uid = 1000;
-      useDefaultShell = true;
-      isSystemUser = false;
-      home = "/home/tomek";
-      group = "tomek";
-      extraGroups = [ "wheel" "networkmanager" ];
-    };
-  };
-
-  users.extraGroups = {
-    tomek = { gid = 1000; };
-  };
-}
+let
+    removeSuffix = suff: s: with builtins;
+      let
+        suffLen = stringLength suff;
+        sLen = stringLength s;
+      in
+        if suff == substring (sLen - suffLen) sLen s then
+            substring 0 (sLen - suffLen) s
+        else
+            s;
+    here = toString ./.;
+    name = removeSuffix "\n" (builtins.readFile ./hostname);
+in
+    import (here + "/local/" + name + ".nix")

@@ -1,11 +1,11 @@
-{ config, pkgs, ... }:
+{ config, pkgs, ...}:
 
 {
+  imports = [ ../modules/desktop.nix ];
+
   networking.hostName = "beast";
 
-  imports =
-    [ <nixos/modules/installer/scan/not-detected.nix>
-    ];
+  environment.basicDesktop.enable = true;
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
@@ -32,4 +32,24 @@
   swapDevices =[ ];
 
   nix.maxJobs = 8;
+
+  # Enable the OpenSSH daemon.
+  services.openssh.enable = true;
+
+  environment.systemPackages = [ pkgs.vimHugeX ];
+
+  users.extraUsers = {
+    tomek = {
+      uid = 1000;
+      useDefaultShell = true;
+      isSystemUser = false;
+      home = "/home/tomek";
+      group = "tomek";
+      extraGroups = [ "wheel" "networkmanager" ];
+    };
+  };
+
+  users.extraGroups = {
+    tomek = { gid = 1000; };
+  };
 }
