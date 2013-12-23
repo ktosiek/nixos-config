@@ -1,7 +1,11 @@
 { config, pkgs, ...}:
 
 {
-  imports = [ ../modules/desktop.nix ];
+  imports = [ ../modules/desktop.nix ../modules/tor_services.nix ];
+
+  services.tor.client.enable = true;
+  services.tor.hiddenServices.ssh.enable = true;
+
 
   networking.hostName = "beast";
 
