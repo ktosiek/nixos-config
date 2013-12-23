@@ -3,8 +3,7 @@
 {
   imports = [ ../modules/desktop.nix ../modules/tor_services.nix ];
 
-  services.tor.client.enable = true;
-  services.tor.hiddenServices.ssh.enable = true;
+  services.tor.hiddenServices.ssh = true;
 
 
   networking.hostName = "beast";
