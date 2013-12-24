@@ -1,10 +1,14 @@
 { config, pkgs, ...}:
 
 {
-  imports = [ ../modules/desktop.nix ../modules/tor_services.nix ];
+  imports = [
+    ../modules/desktop.nix
+    ../modules/tor_services.nix
+    ../modules/pmount.nix ];
 
   services.tor.hiddenServices.ssh = true;
 
+  security.pmount.enable = true;
 
   networking.hostName = "beast";
 
