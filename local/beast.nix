@@ -24,6 +24,8 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
+  hardware.enableAllFirmware = true;  # For wi-fi
+
   fileSystems = {
     "/" =
       { label = "nixos";
