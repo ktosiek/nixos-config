@@ -12,6 +12,12 @@
 
   networking.hostName = "beast";
 
+  networking.nat = {
+    enable = false;
+    externalInterface = "ppp0";
+    internalIPs = [ "10.42.43.0/24" ];
+  };
+
   environment.basicDesktop.enable = true;
 
   # Use the GRUB 2 boot loader.
