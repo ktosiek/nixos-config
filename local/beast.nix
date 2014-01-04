@@ -3,6 +3,7 @@
 {
   imports = [
     ../modules/desktop.nix
+    ../modules/xmonad.nix
     ../modules/tor_services.nix
     ../modules/pmount.nix ];
 
@@ -19,6 +20,8 @@
   };
 
   environment.basicDesktop.enable = true;
+  environment.fullXMonad.enable = true;
+  environment.fullXMonad.withKde = true;
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
