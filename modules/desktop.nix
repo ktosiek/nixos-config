@@ -13,7 +13,7 @@
      environment.basicDesktop = {
        enable = mkOption {
          default = false;
-         type = with types; bool;
+         type = types.bool;
          description = ''
            Enable some common desktop parts, like X11 or CUPS.
          '';
@@ -31,7 +31,10 @@
     # Enable CUPS to print documents.
     services.printing.enable = true;
 
+    hardware.pulseaudio.enable = true;
+
     services.upower.enable = true;
+    services.udisks2.enable = true;
 
     # Enable the X11 windowing system.
     services.xserver = {
