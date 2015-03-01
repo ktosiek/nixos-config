@@ -6,7 +6,7 @@
 
 {
   nixpkgs.config.packageOverrides = pkgs: {
-    bluez = pkgs.bluez5;
+    #bluez = pkgs.bluez5;
   #  pulseaudioFull = pkgs.stdenv.lib.overrideDerivation pkgs.pulseaudioFull (oldAttrs: {
   #    name = "pulseaudio-git";
   #    src = pkgs.fetchgit {
