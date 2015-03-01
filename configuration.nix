@@ -95,5 +95,6 @@
     daemonIONiceLevel = 5;
     daemonNiceLevel = 10;
     buildCores = 0;
+    extraOptions = "auto-optimise-store = true";
   };
 }
