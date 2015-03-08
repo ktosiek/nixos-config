@@ -97,4 +97,8 @@
     buildCores = 0;
     extraOptions = "auto-optimise-store = true";
   };
+
+  powerManagement.powerUpCommands = ''
+    ${pkgs.hdparm}/sbin/hdparm -B 254 /dev/sda
+  '';
 }
